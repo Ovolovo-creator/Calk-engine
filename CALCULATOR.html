@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="calculator.css"> -->
+    <link rel="stylesheet" href="mdi/css/materialdesignicons.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        background-image: linear-gradient(-50deg, green 50%, white 50%);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      header {
+        background-color: aliceblue;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        height: 70%;
+        max-width: 500px;
+        padding: 15px;
+        /* font-size: 20px; */
+        box-sizing: border-box;
+        box-shadow: 5px 5px 20px rgb(76, 86, 60);
+        /* box-sizing: content-box; */
+        border-radius: 1cqmax;
+        flex-wrap: wrap;
+      }
+      header h2 {
+        height: 15%;
+        width: 100%;
+        font-size: 2rem;
+        text-align: center;
+        text-transform: uppercase;
+        overflow: hidden;
+        font-weight: 1000;
+        background: linear-gradient(-20deg, green, white);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      input {
+        width: 90%;
+        margin: 10px auto;
+        height: 18%;
+        font-size: 27px;
+        color: green;
+        text-align: center;
+        border: 1px solid green;
+        border-radius: 5px;
+      }
+      ::placeholder {
+        color: green;
+        text-align: center;
+        font-size: 22px;
+      }
+      .but {
+        height: 20%;
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+      }
+      button {
+        width: 20%;
+        height: 70%;
+        border: none;
+        text-align: center;
+        font-size: 20px;
+        background: linear-gradient(
+          -80deg,
+          rgb(158, 238, 158),
+          rgb(230, 171, 171)
+        );
+        /* background: linear-gradient(to right, #c700c7, #09a8a8); */
+        border-radius: 4vw 2vh;
+        /* border-radius: 5px; */
+        color: rgb(13, 9, 9);
+        opacity: 0.9;
+
+        flex-wrap: wrap;
+      }
+      input {
+        outline-color: green;
+        border: 1.4px solid green;
+      }
+      button:active {
+        transition: all 0.2s;
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+      article {
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        align-items: center;
+        display: none;
+        justify-content: center;
+      }
+      .result {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        overflow: hidden;
+        text-align: center;
+        align-items: center;
+        width: 75%;
+        height: 30%;
+        border-radius: 10px;
+        box-sizing: border-box;
+        box-shadow: 2px 2px 5px;
+        background: linear-gradient(30deg, green 50%, white);
+        /* background: linear-gradient(10deg, green, black); */
+        /* -webkit-background-clip: text;
+  background-clip: text; */
+        /* -webkit-text-fill-color: transparent; */
+      }
+      .result span {
+        width: 15%;
+        height: 30%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-size: 2.5rem;
+        box-shadow: 1px 1px 2px green;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        text-shadow: 1px 1px 1px green;
+        font-weight: 1000;
+        margin-left: auto;
+        background: linear-gradient(50deg, green, white);
+        transition: 0.2s ease-in-out all;
+      }
+      .result span:active {
+        opacity: 0.5;
+        transform: scale(0.5);
+        transition: 0.2s ease-in-out all;
+      }
+      .result p {
+        font-size: 20px;
+        overflow: hidden;
+        width: 100%;
+        color: white;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        /* background-color: red; */
+      }
+      .thing {
+        width: 100%;
+        /* background-color: red; */
+        height: 45%;
+        align-items: end;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .result hr {
+        width: 100%;
+      }
+      .a {
+        background-color: black;
+        margin-left: auto;
+        width: 20%;
+        height: 6%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        border-radius: 3px;
+        /* box-shadow: 4px 4px 5px blue; */
+        box-sizing: border-box;
+        opacity: 0.9;
+        transition: all 0.9s;
+        padding: 5px auto;
+        text-transform: capitalize;
+        text-align: center;
+      }
+      a {
+        background-color: green;
+        margin-left: auto;
+        width: 20%;
+        height: 6%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        border-radius: 3px;
+        /* box-shadow: 4px 4px 5px blue; */
+        box-sizing: border-box;
+        opacity: 0.9;
+        transition: all 0.9s;
+        padding: 5px auto;
+        text-transform: capitalize;
+        text-align: center;
+      }
+      .a:active {
+        transition: all 0.5s;
+        opacity: 0.5;
+        transform: scale(0.9);
+      }
+      a:active {
+        transition: all 0.5s;
+        opacity: 0.5;
+        transform: scale(0.9);
+      }
+      footer {
+        display: flex;
+        height: 7vh;
+        width: 80vw;
+        margin: auto;
+        align-items: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+        border-radius: 10vh 10vw;
+        overflow: hidden;
+        justify-content: center;
+        background: linear-gradient(to right, green, white, green);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        font-weight: 1000;
+        transition: all 2s ease-in-out;
+      }
+      footer:hover {
+        animation: foot 8s 0.5s infinite alternate;
+      }
+      @keyframes foot {
+        0% {
+          background-image: linear-gradient(120deg, green, white, green);
+        }
+        50% {
+          color: white;
+          transform: scale(1.1);
+        }
+        100% {
+          background-image: linear-gradient(
+            120deg,
+            green,
+            rgb(1, 60, 4),
+            green
+          );
+        }
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h2 class="mdi mdi-calculator">
+        Calculator <i class="mdi mdi-calculator-variant"></i>
+      </h2>
+      <a href="">reset</a>
+      <input type="number" placeholder="0" id="number1" />
+      <input type="number" placeholder="0" id="number2" />
+      <div class="but">
+        <button onclick="add(a,b)" class="operator">+</button>
+        <button onclick="substraction(a,b)" class="operator">-</button>
+        <button onclick="division(a,b)" class="operator">÷</button>
+        <button onclick="multiply(a,b)" class="operator">×</button>
+      </div>
+      <hr />
+    </header>
+    <footer>
+      <p id="last">OVO Calculator Website <i class="mdi mdi-calculator"></i></p>
+    </footer>
+    <article id="article">
+      <div class="result" id="nope">
+        <span class="close" id="type">&times;</span>
+        <div class="thing">
+          <p id="result"></p>
+          <hr />
+        </div>
+      </div>
+    </article>
+    <script>
+      document.title = "Calculator";
+
+      let type = document.getElementById("type");
+      let nope = document.getElementById("article");
+      let operate = document.getElementsByClassName("operator");
+      let a = document.getElementById("number1").value;
+      let b = document.getElementById("number2").value;
+      let result = document.getElementById("result");
+      function gove() {
+        nope.style.display = "flex";
+      }
+      function come() {
+        if ((a = "")) {
+          result.textContent = "Please Input A Value";
+        } else if ((b = "")) {
+          result.textContent = "Please Input A Value";
+        } else {
+          getnumber();
+        }
+      }
+      function getnumber() {
+        a = document.getElementById("number1").value;
+        b = document.getElementById("number2").value;
+      }
+      function add() {
+        gove();
+        come();
+        let answer = (result.textContent =
+          "Result is " + (Number(a) + Number(b)));
+      }
+      function substraction() {
+        gove();
+        come();
+        let answer = (result.textContent = "Result is " + Number(a - b));
+      }
+      function division() {
+        gove();
+        come();
+        let answer = (result.textContent = "Result is " + Number(a / b));
+      }
+      function multiply() {
+        gove();
+        come();
+        let answer = (result.textContent = "Result is " + Number(a * b));
+      }
+      function clear() {
+        let answer = (result.textContent = a = b = "ok");
+      }
+
+      function het() {
+        nope.style.display = "none";
+      }
+
+      type.addEventListener("click", (ev) => {
+        het();
+      });
+    </script>
+  </body>
+</html>
